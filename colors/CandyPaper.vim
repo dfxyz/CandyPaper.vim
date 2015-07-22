@@ -310,9 +310,9 @@ call <SID>X("htmlH2", s:blue, "", "none")
 call <SID>X("htmlH3", s:purple, "", "none")
 call <SID>X("htmlH4", s:red, "", "none")
 call <SID>X("htmlTag", s:green, "", "none")
-call <SID>X("htmlEndTag", s:green, "", "none")
 call <SID>X("htmlTagN", s:green, "", "none")
 call <SID>X("htmlTagName", s:green, "", "none")
+call <SID>X("htmlEndTag", s:green, "", "none")
 call <SID>X("htmlArg", s:aqua, "", "none")
 call <SID>X("htmlScriptTag", s:green, "", "none")
 call <SID>X("htmlBold", s:foreground, "", "none")
@@ -485,6 +485,12 @@ call <SID>X("vimSynType", s:yellow, "", "none")
 call <SID>X("vimNotation", s:blue, "", "none")
 call <SID>X("vimOper", s:foreground, "", "none")
 call <SID>X("vimOperParen", s:foreground, "", "none")
+
+" XML Highlighting
+call <SID>X("xmlTag", s:green, "", "none")
+call <SID>X("xmlTagName", s:green, "", "none")
+call <SID>X("xmlEndTag", s:green, "", "none")
+call <SID>X("xmlAttrib", s:aqua, "", "none")
 
 " Delete Functions
 delfunction <SID>X
