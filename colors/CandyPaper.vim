@@ -7,7 +7,7 @@ hi clear
 if exists('syntax_on')
     syntax reset
 endif
-let g:colours_name = "CandyPaper"
+let g:colors_name = "CandyPaper"
 
 " Palette:
 let s:pink         = "#de6fa6" "Include/Exception
