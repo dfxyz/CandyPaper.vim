@@ -82,7 +82,7 @@ let s:tabline_inactive_bg = "#cbc8ad"
 
 " Visual:
 let s:visual_fg    = "#dddddd"
-let s:visual_bg    = "#414d41"
+let s:visual_bg    = "#2A3B4D"
 
 " Returns an approximate grey index for the given grey level
 function <SID>grey_number(x)
