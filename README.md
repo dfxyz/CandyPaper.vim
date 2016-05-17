@@ -21,8 +21,8 @@ Then, add this into your `.vimrc`:
 ## Screenshots
 Ruby:
 
-![Ruby Example](example_rb.png)
+![Ruby Example](example_ruby.png)
 
 * Python:
 
-![Python_Example](example_py.png)
+![Python_Example](example_python.png)
