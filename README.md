@@ -19,18 +19,10 @@ Then, add this into your `.vimrc`:
     colo CandyPaper
 ```
 ## Screenshots
-Ruby and vertical split:
+Ruby:
 
-![Example 1](example1.png)
+![Ruby Example](example_rb.png)
 
-Python with code folding and search highlighting:
+* Python:
 
-![Example 2](example2.png)
-
-C with completing menu:
-
-![Example 3](example3.png)
-
-Split:
-
-![Example 4](example4.png)
+![Python_Example](example_py.png)
