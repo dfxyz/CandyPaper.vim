@@ -19,10 +19,4 @@ Then, add this into your `.vimrc`:
     colo CandyPaper
 ```
 ## Screenshots
-Ruby:
-
-![Ruby Example](example_ruby.png)
-
-* Python:
-
-![Python_Example](example_python.png)
+![Ruby Example](example.png)
