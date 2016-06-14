@@ -28,7 +28,7 @@ let s:dark_green    = '#3f7343'  " 125 45 45
 let s:dim_green     = '#364037'  " 125 15 25
 let s:sea_green     = '#0b7350'  " 160 90 45
 let s:light_blue    = '#98c3d9'  " 200 30 85
-let s:blue          = '#36A3D9'  " 200 75 85
+let s:blue          = '#36a3d9'  " 200 75 85
 let s:dark_blue     = '#08364d'  " 200 90 45
 let s:purple        = '#b077d9'  " 275 45 85
 let s:dark_purple   = '#5d3f73'  " 275 45 45
@@ -296,8 +296,8 @@ call s:_hi("cssPseudoClassId", s:yellow, "", "none")
 " Markdown Highlighting: {{{
 call s:_hi("markdownRule", s:green, "", "none")
 call s:_hi("markdownUrl", s:blue, "", "none")
-call s:_hi("markdownCode", s:olive, "", "none")
-call s:_hi("markdownCodeBlock", s:olive, "", "none")
+call s:_hi("markdownCode", s:blue, "", "none")
+call s:_hi("markdownCodeBlock", s:blue, "", "none")
 call s:_hi("markdownCodeDelimiter", s:dark_green, "", "none")
 call s:_hi("markdownLinkDelimiter", s:green, "", "none")
 call s:_hi("markdownLinkTextDelimiter", s:green, "", "none")
