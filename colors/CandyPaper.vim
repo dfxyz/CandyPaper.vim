@@ -294,6 +294,7 @@ call s:_hi("cssPseudoClassId", s:yellow, "", "none")
 " }}}
 
 " Markdown Highlighting: {{{
+call s:_hi("markdownRule", s:green, "", "none")
 call s:_hi("markdownUrl", s:blue, "", "none")
 call s:_hi("markdownCode", s:olive, "", "none")
 call s:_hi("markdownCodeBlock", s:olive, "", "none")
