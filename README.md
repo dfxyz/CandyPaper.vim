@@ -1,4 +1,4 @@
-CandyPaper - A Dark Theme for Vim
+CandyPaper - A Dark Color Scheme for Vim
 ================================================================================
 
 CandyPaper is a dark color scheme for **Vim** and **GVim** inspired by
