@@ -1,360 +1,411 @@
-" Theme: CandyPaper
+" Color Scheme: CandyPaper
 " Author: DF_XYZ
 " License: MIT
-" Description: A dark theme inspired by PaperColor and CandyCode.
+" Source: http://github.com/dfxyz/CandyPaper.vim
 
-set background=dark
 highlight clear
-if exists('syntax_on')
+if exists("syntax_on")
     syntax reset
 endif
-let g:colors_name = "CandyPaper"
+let colors_name = "CandyPaper"
 
-" Color Palette: {{{
-let s:white         = '#d3d9ce'  " 90 5 85
-let s:grey          = '#70736d'  " 90 5 45
-let s:mid_grey      = '#3e403d'  " 90 5 25
-let s:dark_grey     = '#252624'  " 90 5 15
-let s:black         = '#0c0d0c'  " 90 5 5
-let s:red           = '#d94436'  " 5 75 85
-let s:dark_red      = '#73140b'  " 5 90 45
-let s:orange        = '#d98736'  " 30 75 85
-let s:light_yellow  = '#d9c877'  " 50 45 85
-let s:yellow        = '#d9be36'  " 50 75 85
-let s:olive         = '#c0d977'  " 75 45 85
-let s:light_green   = '#98d99d'  " 125 30 85
-let s:green         = '#77d97f'  " 125 45 85
-let s:dark_green    = '#3f7343'  " 125 45 45
-let s:dim_green     = '#364037'  " 125 15 25
-let s:sea_green     = '#0b7350'  " 160 90 45
-let s:light_blue    = '#98c3d9'  " 200 30 85
-let s:blue          = '#36a3d9'  " 200 75 85
-let s:dark_blue     = '#08364d'  " 200 90 45
-let s:purple        = '#b077d9'  " 275 45 85
-let s:dark_purple   = '#5d3f73'  " 275 45 45
-let s:pink          = '#d977b0'  " 325 45 85
-" }}}
+" Convert HSV to RGB; returns an RGB triple
+" See also: https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSV
+function! s:hsv2rgb(hsv) "{{{
+    let l:h = a:hsv[0] / 60.0
+    let l:s = a:hsv[1] / 100.0
+    let l:v = a:hsv[2] / 100.0
 
-" Helper Functions: {{{
-" returns an approximate grey index for the given grey level
-function s:grey_number(x)
-    if a:x < 14
+    let l:c = l:s * l:v
+    let l:x = l:c * (1 - abs(float2nr(l:h) % 2 + l:h - float2nr(l:h) - 1))
+
+    if 0 <= l:h && l:h < 1
+        let l:rgb = [l:c, l:x, 0]
+    elseif 1 <= l:h && l:h < 2
+        let l:rgb = [l:x, l:c, 0]
+    elseif 2 <= l:h && l:h < 3
+        let l:rgb = [0, l:c, l:x]
+    elseif 3 <= l:h && l:h < 4
+        let l:rgb = [0, l:x, l:c]
+    elseif 4 <= l:h && l:h < 5
+        let l:rgb = [l:x, 0, l:c]
+    elseif 5 <= l:h && l:h < 6
+        let l:rgb = [l:c, 0, l:x]
+    else
+        let l:rgb = [0, 0, 0]
+    endif
+
+    let l:m = l:v - l:c
+    let l:rgb[0] = float2nr(round(255 * (l:rgb[0] + l:m)))
+    let l:rgb[1] = float2nr(round(255 * (l:rgb[1] + l:m)))
+    let l:rgb[2] = float2nr(round(255 * (l:rgb[2] + l:m)))
+
+    return l:rgb
+endfunction "}}}
+
+" Convert RGB triple to a hex string
+function! s:rgb2hex(rgb) "{{{
+    return printf("#%02x%02x%02x", a:rgb[0], a:rgb[1], a:rgb[2])
+endfunction "}}}
+
+" Converts given grey level to approximate grey number
+" Available grey levels in 256-color pallete: [0, 8, 18, 28, ..., 238, 255]
+function! s:grey_number(grey_level) "{{{
+    if a:grey_level <= 4
+        return 0
+    elseif a:grey_level >= 247
+        return 24
+    endif
+
+    let l:i = 1
+    let l:n = 13
+    while 1
+        if a:grey_level <= l:n
+            return l:i > 23 ? 23 : l:i
+        endif
+        let l:i += 1
+        let l:n += 10
+    endwhile
+endfunction "}}}
+
+" Converts given grey number to grey level
+function! s:grey_level(grey_number) "{{{
+    if a:grey_number == 0
+        return 0
+    elseif a:grey_number > 23
+        return 255
+    else
+        return (a:grey_number - 1) * 10 + 8
+    endif
+endfunction "}}}
+
+" Converts given grey number to 256-color palette index
+function! s:grey_index(grey_number) "{{{
+    if a:grey_number == 0
+        return 16 " black
+    elseif a:grey_number > 23
+        return 231 " white
+    else
+        return 231 + a:grey_number " grey
+    endif
+endfunction "}}}
+
+" Converts given color level to approximate color number
+" Available color levels in 256-color palette: [0, 95, 135, 175, 215, 255]
+function! s:color_number(color_level) "{{{
+    if a:color_level <= 48
+        return 0
+    endif
+
+    let l:i = 1
+    let l:n = 115
+    while 1
+        if a:color_level <= l:n
+            return l:i
+        endif
+        let l:i += 1
+        let l:n += 40
+    endwhile
+endfunction "}}}
+
+" Converts given color number to color level
+function! s:color_level(color_number) "{{{
+    if a:color_number == 0
         return 0
     else
-        let l:n = (a:x - 8) / 10
-        let l:m = (a:x - 8) % 10
-        if l:m < 5
-            return l:n
-        else
-            return l:n + 1
+        return 55 + a:color_number * 40
+    endif
+endfunction "}}}
+
+" Converts given color numbers to 256-color palette index
+function! s:color_index(r_number, g_number, b_number) "{{{
+    return 16 + 36 * a:r_number + 6 * a:g_number + a:b_number
+endfunction "}}}
+
+" Converts RGB triple to 256-color palette index
+function! s:rgb2index(rgb) "{{{
+    let [l:r, l:g, l:b] = a:rgb
+
+    let l:grey_number_r = s:grey_number(l:r)
+    let l:grey_number_g = s:grey_number(l:g)
+    let l:grey_number_b = s:grey_number(l:b)
+
+    let l:color_number_r = s:color_number(l:r)
+    let l:color_number_g = s:color_number(l:g)
+    let l:color_number_b = s:color_number(l:b)
+
+    if l:grey_number_r == l:grey_number_g && l:grey_number_g == l:grey_number_b
+        let l:diff_r = s:grey_level(l:grey_number_r) - l:r
+        let l:diff_g = s:grey_level(l:grey_number_g) - l:g
+        let l:diff_b = s:grey_level(l:grey_number_b) - l:b
+        let l:diff_grey = (l:diff_r * l:diff_r) + (l:diff_g * l:diff_g)
+                    \ + (l:diff_b * l:diff_b)
+
+        let l:diff_r = s:color_level(l:color_number_r) - l:r
+        let l:diff_g = s:color_level(l:color_number_g) - l:g
+        let l:diff_b = s:color_level(l:color_number_b) - l:b
+        let l:diff_color = (l:diff_r * l:diff_r) + (l:diff_g * l:diff_g)
+                    \ + (l:diff_b * l:diff_b)
+
+        if l:diff_grey < l:diff_color
+            return s:grey_index(l:grey_number_r)
         endif
     endif
-endfunction
 
-" returns the actual grey level represented by the grey index
-function s:grey_level(n)
-    if a:n == 0
-        return 0
-    else
-        return 8 + (a:n * 10)
+    return s:color_index(l:color_number_r, l:color_number_g, l:color_number_b)
+endfunction "}}}
+
+" Scheme related functions and variables
+" {{{
+let s:light_scheme = {}
+let s:dark_scheme = {}
+function! s:register(map, group, settings) "{{{
+    if type(a:settings) == v:t_string " link {group} to {settings}
+        let a:map[a:group] = a:settings
+        return
     endif
-endfunction
 
-" returns the palette index for the given grey index
-function s:grey_color(n)
-    if a:n == 0
-        return 16
-    elseif a:n == 25
-        return 231
-    else
-        return 231 + a:n
-    endif
-endfunction
-
-" returns an approximate color index for the given color level
-function s:rgb_number(x)
-    if a:x < 75
-        return 0
-    else
-        let l:n = (a:x - 55) / 40
-        let l:m = (a:x - 55) % 40
-        if l:m < 20
-            return l:n
+    let a:map[a:group] = {}
+    if has_key(a:settings, "fg")
+        let l:fg = a:settings["fg"]
+        if type(l:fg) == v:t_string " use same settings from registered group
+            let a:map[a:group]["guifg"] = a:map[l:fg]["guifg"]
+            let a:map[a:group]["ctermfg"] = a:map[l:fg]["ctermfg"]
         else
-            return l:n + 1
+            let l:rgb = s:hsv2rgb(l:fg)
+            let a:map[a:group]["guifg"] = s:rgb2hex(l:rgb)
+            let a:map[a:group]["ctermfg"] = s:rgb2index(l:rgb)
         endif
     endif
-endfunction
-
-" returns the actual color level for the given color index
-function s:rgb_level(n)
-    if a:n == 0
-        return 0
-    else
-        return 55 + (a:n * 40)
-    endif
-endfunction
-
-" returns the palette index for the given R/G/B color indices
-function s:rgb_color(x, y, z)
-    return 16 + (a:x * 36) + (a:y * 6) + a:z
-endfunction
-
-" returns the palette index to approximate the given R/G/B color levels
-function s:_color(r, g, b)
-    " get the closest grey
-    let l:gx = s:grey_number(a:r)
-    let l:gy = s:grey_number(a:g)
-    let l:gz = s:grey_number(a:b)
-
-    " get the closest color
-    let l:x = s:rgb_number(a:r)
-    let l:y = s:rgb_number(a:g)
-    let l:z = s:rgb_number(a:b)
-
-    if l:gx == l:gy && l:gy == l:gz
-        " there are two possibilities
-        let l:dgr = s:grey_level(l:gx) - a:r
-        let l:dgg = s:grey_level(l:gy) - a:g
-        let l:dgb = s:grey_level(l:gz) - a:b
-        let l:dgrey = (l:dgr * l:dgr) + (l:dgg * l:dgg) + (l:dgb * l:dgb)
-        let l:dr = s:rgb_level(l:gx) - a:r
-        let l:dg = s:rgb_level(l:gy) - a:g
-        let l:db = s:rgb_level(l:gz) - a:b
-        let l:drgb = (l:dr * l:dr) + (l:dg * l:dg) + (l:db * l:db)
-        if l:dgrey < l:drgb
-            " use the grey
-            return s:grey_color(l:gx)
+    if has_key(a:settings, "bg")
+        let l:bg = a:settings["bg"]
+        if type(l:bg) == v:t_string " use same settings from registered group
+            let a:map[a:group]["guibg"] = a:map[l:bg]["guibg"]
+            let a:map[a:group]["ctermbg"] = a:map[l:bg]["ctermbg"]
         else
-            " use the color
-            return s:rgb_color(l:x, l:y, l:z)
+            let l:rgb = s:hsv2rgb(l:bg)
+            let a:map[a:group]["guibg"] = s:rgb2hex(l:rgb)
+            let a:map[a:group]["ctermbg"] = s:rgb2index(l:rgb)
         endif
+    endif
+    if has_key(a:settings, "attr")
+        let l:attr = a:settings["attr"]
+        let a:map[a:group]["gui"] = l:attr
+        let a:map[a:group]["cterm"] = l:attr
+    endif
+endfunction "}}}
+
+function! s:light(group, settings) "{{{
+    call s:register(s:light_scheme, a:group, a:settings)
+endfunction "}}}
+
+function! s:dark(group, settings) "{{{
+    call s:register(s:dark_scheme, a:group, a:settings)
+endfunction "}}}
+
+function! s:apply_scheme() "{{{
+    if &background == "light"
+        let l:scheme = s:light_scheme
     else
-        " only one possibility
-        return s:rgb_color(l:x, l:y, l:z)
+        let l:scheme = s:dark_scheme
     endif
-endfunction
 
-" returns the palette index to approximate the '#rrggbb' hex string
-function s:rgb(rgb)
-  let l:r = ("0x" . strpart(a:rgb, 1, 2)) + 0
-  let l:g = ("0x" . strpart(a:rgb, 3, 2)) + 0
-  let l:b = ("0x" . strpart(a:rgb, 5, 2)) + 0
-  return s:_color(l:r, l:g, l:b)
-endfunction
+    for [group, settings] in items(l:scheme)
+        exec "highlight clear " . group
+        if type(settings) == v:t_string " link {group} to {settings}
+            exec "highlight! link " . group . " " . settings
+            continue
+        endif
 
-" Sets the highlighting for the given group
-function s:_hi(group, fg, bg, attr)
-    if a:fg != ""
-        exec "hi " . a:group . " guifg=" . a:fg . " ctermfg=" . s:rgb(a:fg)
-    endif
-    if a:bg != ""
-        exec "hi " . a:group . " guibg=" . a:bg . " ctermbg=" . s:rgb(a:bg)
-    endif
-    if a:attr != ""
-        exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
-    endif
-endfunction
+        let l:cmd = "highlight " . group
+        for key in ["guifg", "guibg", "gui", "ctermfg", "ctermbg", "cterm"]
+            if has_key(settings, key)
+                let l:cmd = l:cmd . " " . key . "=" . settings[key]
+            endif
+        endfor
+        exec l:cmd
+    endfor
+endfunction "}}}
 " }}}
 
-" Highlighting Groups for Various Occations : {{{
-call s:_hi("SpecialKey", s:dark_green, "", "none")
-call s:_hi("NonText", s:dark_green, "", "none")
-call s:_hi("Directory", s:blue, "", "none")
-call s:_hi("ErrorMsg", s:white, s:dark_red, "none")
-call s:_hi("IncSearch", s:black, s:yellow, "none")
-call s:_hi("Search", s:white, s:sea_green, "none")
-call s:_hi("MoreMsg", s:olive, "", "none")
-call s:_hi("ModeMsg", s:olive, "", "none")
-call s:_hi("LineNr", s:grey, "", "none")
-call s:_hi("CursorLineNr", s:light_yellow, s:dark_grey, "none")
-call s:_hi("Question", s:green, "", "none")
-call s:_hi("StatusLine", s:black, s:white, "none")
-call s:_hi("StatusLineNC", s:white, s:mid_grey, "none")
-call s:_hi("VertSplit", s:white, "", "none")
-call s:_hi("Title", s:green, "", "none")
-call s:_hi("Visual", s:white, s:dark_blue, "none")
-call s:_hi("VisualNOS", s:white, s:dark_blue, "none")
-call s:_hi("WarningMsg", s:olive, "", "none")
-call s:_hi("WildMenu", s:black, s:yellow, "none")
-call s:_hi("Folded", s:olive, s:dim_green, "none")
-call s:_hi("FoldColumn", s:blue, s:black, "none")
-call s:_hi("DiffAdd", s:black, s:green, "none")
-call s:_hi("DiffChange", s:black, s:yellow, "none")
-call s:_hi("DiffDelete", s:black, s:red, "none")
-call s:_hi("DiffText", s:black, s:light_yellow, "none")
-call s:_hi("SignColumn", s:blue, s:black, "none")
-call s:_hi("SpellBad", "", s:dark_red, "none")
-call s:_hi("SpellCap", "", s:dark_purple, "none")
-call s:_hi("SpellRare", "", s:dark_green, "none")
-call s:_hi("SpellLocal", "", s:dark_blue, "none")
-call s:_hi("PMenu", s:black, s:white, "none")
-call s:_hi("PMenuSel", "", s:dark_blue, "none")
-call s:_hi("PMenuSbar", "", s:dark_grey, "none")
-call s:_hi("PMenuThumb", "", s:grey, "none")
-call s:_hi("TabLine", s:black, s:white, "none")
-call s:_hi("TabLineSel", "", "", "none")
-call s:_hi("TabLineFill", "", s:white, "none")
-call s:_hi("CursorColumn", "", s:dark_grey, "none")
-call s:_hi("CursorLine", "", s:dark_grey, "none")
-call s:_hi("ColorColumn", "", s:dark_red, "none")
-call s:_hi("Cursor", "", s:white, "none")
+" Light Scheme - Standard Syntax Groups
+" {{{
+    call s:light("Normal", {"fg": [210, 50, 50], "bg": [75, 5, 100]})
+    call s:light("Comment", {"fg": [90, 50, 50]})
+    call s:light("Constant", {"fg": [330, 75, 75]})
+    call s:light("String", {"fg": [180, 75, 60]})
+    call s:light("Character", "String")
+    call s:light("Number", {"fg": [15, 90, 75]})
+    call s:light("Identifier", {"fg": [210, 75, 75]})
+    call s:light("Statement", {"fg": [120, 75, 50]})
+    call s:light("Operator", {"fg": "Normal"})
+    call s:light("PreProc", {"fg": [270, 75, 75]})
+    call s:light("Type", {"fg": "Statement"})
+    call s:light("Special", {"fg": [240, 50, 75]})
+    call s:light("Underlined", {"fg": [240, 75, 90], "attr": "underline"})
+    call s:light("Error", {"bg": [0, 15, 90]})
+    call s:light("Todo", {"bg": [60, 90, 90]})
+    call s:light("MatchParen", {"bg": [150, 15, 90]})
+" }}}
+" Light Scheme - Standard Highlighting Groups
+" {{{
+    call s:light("SpecialKey", {"fg": [240, 75, 75]})
+    call s:light("NonText", {"fg": [210, 30, 60]})
+    call s:light("Directory", {"fg": "Identifier"})
+    call s:light("Question", {"fg": "Statement"})
+    call s:light("Title", {"fg": "Normal"})
+    call s:light("Conceal", {"fg": "PreProc"})
+
+    call s:light("ErrorMsg", {"fg": [0, 75, 90]})
+    call s:light("WarningMsg", {"fg": [30, 90, 90]})
+    call s:light("MoreMsg", {"fg": "Statement"})
+    call s:light("ModeMsg", {"fg": "Normal"})
+
+    call s:light("IncSearch", {"bg": [120, 30, 90]})
+    call s:light("Search", {"bg": [90, 30, 90]})
+
+    call s:light("CursorLine", {"bg": [75, 5, 95]})
+    call s:light("LineNr", {"fg": "NonText"})
+    call s:light("CursorLineNr", {"fg": "NonText", "bg": "CursorLine"})
+    call s:light("CursorColumn", "CursorLine")
+    call s:light("ColorColumn", {"bg": [75, 5, 90]})
+
+    call s:light("StatusLine", {"bg": [120, 5, 90]})
+    call s:light("StatusLineNC", {"fg": [120, 5, 70], "bg": "StatusLine"})
+    call s:light("StatusLineTerm", "StatusLine")
+    call s:light("StatusLineTermNC", "StatusLineNC")
+    call s:light("VertSplit", {"bg": "StatusLine"})
+
+    call s:light("Visual", {"bg": [120, 10, 90]})
+    call s:light("VisualNOS", "Visual")
+
+    call s:light("WildMenu", {"bg": "IncSearch"})
+
+    call s:light("Folded", {"fg": [210, 50, 75], "bg": [150, 10, 90]})
+    call s:light("FoldColumn", {"fg": "NonText"})
+
+    call s:light("DiffAdd", {"bg": [120, 20, 90]})
+    call s:light("DiffDelete", {"fg": "NonText", "bg": [75, 5, 85]})
+    call s:light("DiffChange", {"bg": [210, 10, 100]})
+    call s:light("DiffText", {"bg": [210, 20, 100]})
+
+    call s:light("SignColumn", {"fg": "ErrorMsg"})
+
+    call s:light("Pmenu", {"bg": "StatusLine"})
+    call s:light("PmenuSel", {"bg": "IncSearch"})
+    call s:light("PmenuSbar", {"bg": "StatusLine"})
+    call s:light("PmenuThumb", {"bg": [120, 5, 80]})
+
+    call s:light("TabLine", {"fg": "NonText", "bg": "ColorColumn"})
+    call s:light("TabLineSel", {"fg": "Normal"})
+    call s:light("TabLineFill", {"bg": "ColorColumn"})
+" }}}
+" Light Scheme - Other Groups
+" {{{
+    call s:light("htmlTag", "Statement")
+    call s:light("htmlEndTag", "Statement")
+    call s:light("htmlArg", "Identifier")
+    call s:light("htmlSpecialChar", "Number")
+
+    call s:light("xmlTag", "Statement")
+    call s:light("xmlEndTag", "Statement")
+    call s:light("xmlTagName", "Statement")
+    call s:light("xmlDocTypeDecl", "Statement")
+    call s:light("xmlAttrib", "Identifier")
+    call s:light("xmlAttribPunct", "Identifier")
+    call s:light("xmlEntity", "Number")
+    call s:light("xmlEntityPunct", "Number")
 " }}}
 
-" Syntax Highlighting Groups: {{{
-call s:_hi("Normal", s:white, s:black, "none")
-call s:_hi("Error", "", s:dark_red, "none")
-call s:_hi("MatchParen", s:yellow, s:sea_green, "none")
+" Dark Scheme - Standard Syntax Groups
+" {{{
+    call s:dark("Normal", {"fg": [120, 10, 60], "bg": [0, 0, 10]})
+    call s:dark("Comment", {"fg": [90, 30, 60]})
+    call s:dark("Constant", {"fg": [330, 30, 70]})
+    call s:dark("String", {"fg": [180, 60, 60]})
+    call s:dark("Character", "String")
+    call s:dark("Number", {"fg": [15, 50, 75]})
+    call s:dark("Identifier", {"fg": [210, 30, 65]})
+    call s:dark("Statement", {"fg": [120, 40, 60]})
+    call s:dark("Operator", {"fg": "Normal"})
+    call s:dark("PreProc", {"fg": [270, 30, 70]})
+    call s:dark("Type", {"fg": "Statement"})
+    call s:dark("Special", {"fg": [240, 50, 75]})
+    call s:dark("Underlined", {"fg": [210, 50, 70], "attr": "underline"})
+    call s:dark("Error", {"bg": [0, 50, 30]})
+    call s:dark("Todo", {"bg": [60, 100, 30]})
+    call s:dark("MatchParen", {"bg": [150, 30, 30]})
+" }}}
+" Dark Scheme - Standard Highlighting Groups
+" {{{
+    call s:dark("SpecialKey", "Special")
+    call s:dark("NonText", {"fg": [120, 10, 50]})
+    call s:dark("Directory", {"fg": "Identifier"})
+    call s:dark("Question", {"fg": "Statement"})
+    call s:dark("Title", {"fg": "Normal"})
+    call s:dark("Conceal", {"fg": "PreProc"})
 
-call s:_hi("Comment", s:dark_green, "", "none")
+    call s:dark("ErrorMsg", {"fg": [0, 50, 75]})
+    call s:dark("WarningMsg", {"fg": [60, 100, 60]})
+    call s:dark("MoreMsg", {"fg": "Statement"})
+    call s:dark("ModeMsg", {"fg": "Normal"})
 
-call s:_hi("Constant", s:pink, "", "none")
-call s:_hi("String", s:olive, "", "none")
-call s:_hi("Character", s:orange, "", "none")
-call s:_hi("Number", s:red, "", "none")
-call s:_hi("Float", s:red, "", "none")
-call s:_hi("Boolean", s:yellow, "", "none")
+    call s:dark("IncSearch", {"fg": [90, 60, 60], "bg": [120, 75, 30]})
+    call s:dark("Search", {"bg": [90, 75, 30]})
 
-call s:_hi("Identifier", s:blue, "", "none")
-call s:_hi("Function", s:blue, "", "none")
+    call s:dark("CursorLine", {"bg": [120, 10, 20]})
+    call s:dark("LineNr", {"fg": "NonText"})
+    call s:dark("CursorLineNr", {"fg": "NonText", "bg": "CursorLine"})
+    call s:dark("CursorColumn", "CursorLine")
+    call s:dark("ColorColumn", {"bg": [120, 5, 30]})
 
-call s:_hi("Statement", s:green, "", "none")
-call s:_hi("Conditional", s:green, "", "none")
-call s:_hi("Repeat", s:green, "", "none")
-call s:_hi("Label", s:blue, "", "none")
-call s:_hi("Operator", s:light_blue, "", "none")
-call s:_hi("Keyword", s:blue, "", "none")
-call s:_hi("Exception", s:green, "", "none")
+    call s:dark("StatusLine", {"bg": [120, 10, 30]})
+    call s:dark("StatusLineNC", {"fg": "NonText", "bg": "StatusLine"})
+    call s:dark("StatusLineTerm", "StatusLine")
+    call s:dark("StatusLineTermNC", "StatusLineNC")
+    call s:dark("VertSplit", {"bg": "StatusLine"})
 
-call s:_hi("PreProc", s:blue, "", "none")
-call s:_hi("Include", s:green, "", "none")
-call s:_hi("Define", s:blue, "", "none")
-call s:_hi("Macro", s:blue, "", "none")
-call s:_hi("PreCondit", s:green, "", "none")
+    call s:dark("Visual", {"bg": [120, 30, 30]})
+    call s:dark("VisualNOS", "Visual")
 
-call s:_hi("Type", s:green, "", "none")
-call s:_hi("StorageClass", s:purple, "", "none")
-call s:_hi("Structure", s:blue, "", "none")
-call s:_hi("Typedef", s:green, "", "none")
+    call s:dark("WildMenu", {"bg": "IncSearch"})
 
-call s:_hi("Special", s:yellow, "", "none")
-call s:_hi("Tag", s:green, "", "none")
-call s:_hi("Delimiter", s:light_blue, "", "none")
-call s:_hi("SpecialComment", s:green, "", "none")
-call s:_hi("Debug", s:red, "", "none")
+    call s:dark("Folded", {"fg": "IncSearch", "bg": "MatchParen"})
+    call s:dark("FoldColumn", {"fg": "NonText"})
 
-call s:_hi("Underlined", s:purple, "", "underline")
+    call s:dark("DiffAdd", {"bg": [120, 50, 30]})
+    call s:dark("DiffDelete", {"fg": "NonText", "bg": [120, 10, 25]})
+    call s:dark("DiffChange", {"bg": [210, 25, 30]})
+    call s:dark("DiffText", {"bg": [210, 50, 30]})
 
-call s:_hi("Todo", s:light_green, s:black, "none")
+    call s:dark("SignColumn", {"fg": "ErrorMsg"})
+
+    call s:dark("Pmenu", {"fg": "Normal", "bg": "StatusLine"})
+    call s:dark("PmenuSel", {"fg": "Normal", "bg": "IncSearch"})
+    call s:dark("PmenuSbar", {"bg": "StatusLine"})
+    call s:dark("PmenuThumb", {"bg": [120, 5, 40]})
+
+    call s:dark("TabLine", {"fg": "NonText", "bg": "ColorColumn"})
+    call s:dark("TabLineSel", {"fg": "Normal"})
+    call s:dark("TabLineFill", {"bg": "ColorColumn"})
+" }}}
+" Dark Scheme - Other Groups
+" {{{
+    call s:dark("htmlTag", "Statement")
+    call s:dark("htmlEndTag", "Statement")
+    call s:dark("htmlArg", "Identifier")
+    call s:dark("htmlSpecialChar", "Number")
+
+    call s:dark("xmlTag", "Statement")
+    call s:dark("xmlEndTag", "Statement")
+    call s:dark("xmlTagName", "Statement")
+    call s:dark("xmlDocTypeDecl", "Statement")
+    call s:dark("xmlAttrib", "Identifier")
+    call s:dark("xmlAttribPunct", "Identifier")
+    call s:dark("xmlEntity", "Number")
+    call s:dark("xmlEntityPunct", "Number")
 " }}}
 
-" VimL Highlighting: {{{
-call s:_hi("vimAutoEvent", s:blue, "", "none")
-call s:_hi("vimBracket", s:blue, "", "none")
-call s:_hi("vimCommentTitle", s:green, "", "none")
-call s:_hi("vimCommand", s:green, "", "none")
-call s:_hi("vimFuncName", s:purple, "", "none")
-call s:_hi("vimGroup", s:orange, "", "none")
-call s:_hi("vimNotation", s:blue, "", "none")
-call s:_hi("vimVar", s:orange, "", "none")
-" }}}
+call s:apply_scheme()
 
-" C/C++ Highlighting: {{{
-call s:_hi("cOctalZero", s:dark_green, "", "none")
-call s:_hi("cppStructure", s:green, "", "none")
-" }}}
-
-" HTML Highlighting: {{{
-call s:_hi("htmlArg", s:blue, "", "none")
-call s:_hi("htmlTag", s:green, "", "none")
-call s:_hi("htmlEndTag", s:green, "", "none")
-call s:_hi("htmlTagN", s:green, "", "none")
-call s:_hi("htmlSpecialTagName", s:green, "", "none")
-call s:_hi("htmlBold", s:light_yellow, "", "none")
-call s:_hi("htmlItalic", s:light_green, "", "none")
-call s:_hi("htmlBoldItalic", s:orange, "", "none")
-" }}}
-
-" Javascript Highlighting: {{{
-call s:_hi("javaScriptBraces", s:light_blue, "", "none")
-call s:_hi("javaScriptParens", s:light_blue, "", "none")
-call s:_hi("javaScriptIdentifier", s:green, "", "none")
-call s:_hi("javaScriptBranch", s:green, "", "none")
-call s:_hi("javaScriptGlobal", s:purple, "", "none")
-call s:_hi("javaScriptMember", s:purple, "", "none")
-call s:_hi("javaScriptNumber", s:red, "", "none")
-call s:_hi("javaScriptNull", s:pink, "", "none")
-" }}}
-
-" CSS Highlighting: {{{
-call s:_hi("cssBraces", s:light_blue, "", "none")
-call s:_hi("cssIdentifier", s:blue, "", "none")
-call s:_hi("cssClassName", s:blue, "", "none")
-call s:_hi("cssPseudoClassId", s:yellow, "", "none")
-" }}}
-
-" Markdown Highlighting: {{{
-call s:_hi("markdownRule", s:green, "", "none")
-call s:_hi("markdownUrl", s:blue, "", "none")
-call s:_hi("markdownCode", s:blue, "", "none")
-call s:_hi("markdownCodeBlock", s:blue, "", "none")
-call s:_hi("markdownCodeDelimiter", s:dark_green, "", "none")
-call s:_hi("markdownLinkDelimiter", s:green, "", "none")
-call s:_hi("markdownLinkTextDelimiter", s:green, "", "none")
-" }}}
-
-" Python Highlighting: {{{
-call s:_hi("pythonBuiltin", s:purple, "", "none")
-call s:_hi("pythonExceptions", s:purple, "", "none")
-call s:_hi("pythonRawString", s:yellow, "", "none")
-" }}}
-
-" Java Highlighting: {{{
-call s:_hi("javaClassDecl", s:green, "", "none")
-call s:_hi("javaScopeDecl", s:blue, "", "none")
-call s:_hi("javaOperator", s:green, "", "none")
-call s:_hi("javaDocTags", s:green, "", "none")
-" }}}
-
-" Ruby Highlighting: {{{
-call s:_hi("rubyDefine", s:green, "", "none")
-call s:_hi("rubyIdentifier", s:purple, "", "none")
-" }}}
-
-" PHP Highlighting: {{{
-call s:_hi("phpVarSelector", s:green, "", "none")
-call s:_hi("phpIdentifier", s:white, "", "none")
-call s:_hi("phpStructure", s:green, "", "none")
-call s:_hi("phpFunctions", s:purple, "", "none")
-call s:_hi("phpSpecialFunction", s:purple, "", "none")
-" }}}
-
-" XML Highlighting: {{{
-call s:_hi("xmlTag", s:green, "", "none")
-call s:_hi("xmlEndTag", s:green, "", "none")
-call s:_hi("xmlTagName", s:green, "", "none")
-call s:_hi("xmlNameSpace", s:pink, "", "none")
-call s:_hi("xmlEntity", s:purple, "", "none")
-call s:_hi("xmlEntityPunct", s:purple, "", "none")
-call s:_hi("xmlAttrib", s:blue, "", "none")
-call s:_hi("xmlAttribPunct", s:blue, "", "none")
-call s:_hi("xmlDocTypeDecl", s:dark_green, "", "none")
-call s:_hi("xmlDocTypeKeyword", s:dark_green, "", "none")
-call s:_hi("xmlCdataCdata", s:dark_green, "", "none")
-call s:_hi("xmlCdataStart", s:dark_green, "", "none")
-call s:_hi("xmlCdataEnd", s:dark_green, "", "none")
-" }}}
-
-" Delete Helper Functions: {{{
-delfunction s:_hi
-delfunction s:rgb
-delfunction s:_color
-delfunction s:rgb_color
-delfunction s:rgb_level
-delfunction s:rgb_number
-delfunction s:grey_color
-delfunction s:grey_level
-delfunction s:grey_number
-" }}}
-
-" vim: fdm=marker
+" vim: fdm=marker fmr={{{,}}}
