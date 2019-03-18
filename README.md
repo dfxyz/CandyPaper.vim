@@ -11,8 +11,8 @@ Just put 'CandyPaper.vim' into the 'colors' directory. Or use a bundle manager.
 Then, add this into your `~/.vimrc`:
 
 ```VimL
-    set t_Co=256
-    set backgroud=light " or dark
+    set background=light " or dark
+    set termguicolors " or set t_Co=256 if not supported
     colorscheme CandyPaper
 ```
 
