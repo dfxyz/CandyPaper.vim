@@ -232,7 +232,7 @@ endfunction "}}}
 " {{{
     call s:light("Normal", {"fg": [210, 50, 50], "bg": [75, 5, 100]})
     call s:light("Comment", {"fg": [90, 50, 50]})
-    call s:light("Constant", {"fg": [330, 75, 75]})
+    call s:light("Constant", {"fg": [300, 75, 75]})
     call s:light("String", {"fg": [180, 75, 60]})
     call s:light("Character", "String")
     call s:light("Number", {"fg": [15, 90, 75]})
