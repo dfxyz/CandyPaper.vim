@@ -319,7 +319,7 @@ endfunction "}}}
 
 " Dark Scheme - Standard Syntax Groups
 " {{{
-    call s:dark("Normal", {"fg": [120, 10, 60], "bg": [0, 0, 10]})
+    call s:dark("Normal", {"fg": [120, 15, 60], "bg": [0, 0, 10]})
     call s:dark("Comment", {"fg": [90, 30, 60]})
     call s:dark("Constant", {"fg": [330, 30, 70]})
     call s:dark("String", {"fg": [180, 60, 60]})
@@ -339,7 +339,7 @@ endfunction "}}}
 " Dark Scheme - Standard Highlighting Groups
 " {{{
     call s:dark("SpecialKey", "Special")
-    call s:dark("NonText", {"fg": [120, 10, 50]})
+    call s:dark("NonText", {"fg": [120, 15, 50]})
     call s:dark("Directory", {"fg": "Identifier"})
     call s:dark("Question", {"fg": "Statement"})
     call s:dark("Title", {"fg": "Normal"})
@@ -353,13 +353,13 @@ endfunction "}}}
     call s:dark("IncSearch", {"fg": [90, 60, 60], "bg": [120, 75, 30]})
     call s:dark("Search", {"bg": [90, 75, 30]})
 
-    call s:dark("CursorLine", {"bg": [120, 10, 20]})
+    call s:dark("CursorLine", {"bg": [120, 15, 20]})
     call s:dark("LineNr", {"fg": "NonText"})
     call s:dark("CursorLineNr", {"fg": "NonText", "bg": "CursorLine"})
     call s:dark("CursorColumn", "CursorLine")
     call s:dark("ColorColumn", {"bg": [120, 5, 30]})
 
-    call s:dark("StatusLine", {"bg": [120, 10, 30]})
+    call s:dark("StatusLine", {"bg": [120, 15, 30]})
     call s:dark("StatusLineNC", {"fg": "NonText", "bg": "StatusLine"})
     call s:dark("StatusLineTerm", "StatusLine")
     call s:dark("StatusLineTermNC", "StatusLineNC")
@@ -374,7 +374,7 @@ endfunction "}}}
     call s:dark("FoldColumn", {"fg": "NonText"})
 
     call s:dark("DiffAdd", {"bg": [120, 50, 30]})
-    call s:dark("DiffDelete", {"fg": "NonText", "bg": [120, 10, 25]})
+    call s:dark("DiffDelete", {"fg": "NonText", "bg": [120, 15, 25]})
     call s:dark("DiffChange", {"bg": [210, 25, 30]})
     call s:dark("DiffText", {"bg": [210, 50, 30]})
 
