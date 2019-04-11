@@ -320,7 +320,7 @@ endfunction "}}}
 " Dark Scheme - Standard Syntax Groups
 " {{{
     call s:dark("Normal", {"fg": [120, 15, 60], "bg": [0, 0, 10]})
-    call s:dark("Comment", {"fg": [90, 30, 60]})
+    call s:dark("Comment", {"fg": [90, 40, 60]})
     call s:dark("Constant", {"fg": [330, 30, 70]})
     call s:dark("String", {"fg": [180, 60, 60]})
     call s:dark("Character", "String")
