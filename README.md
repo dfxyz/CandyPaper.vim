@@ -1,9 +1,13 @@
-CandyPaper - Light Dark Color Scheme for Vim
+Candy Paper - Light & Dark Color Schemes for Vim
 ================================================================================
 
-CandyPaper provides light and dark color scheme for **Vim**.
+Candy Paper provides light and dark color scheme for **Vim**.
 
-See also: ["Candy Paper Color Table"](https://docs.google.com/spreadsheets/d/1v4NbZxSi4qxn7nStUBQCcnAlwZAlAkVvuDV5CeV8NX8/edit?usp=sharing).
+See also: 
+* [CandyPaper.idea](https://github.com/dfxyz/CandyPaper.idea) -
+    color schemes for IntelliJ IDEA
+* [CandyPaper.mintty](https://github.com/dfxyz/CandyPaper.idea) -
+    color schemes for mintty
 
 ## Installation
 Just put 'CandyPaper.vim' into the 'colors' directory. Or use a bundle manager.
@@ -11,8 +15,8 @@ Just put 'CandyPaper.vim' into the 'colors' directory. Or use a bundle manager.
 Then, add this into your `~/.vimrc`:
 
 ```VimL
-    set background=light " or dark
-    set termguicolors " or set t_Co=256 if not supported
+    set background=light    " or dark
+    set termguicolors       " or set t_Co=256 if not supported
     colorscheme CandyPaper
 ```
 
