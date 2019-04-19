@@ -241,7 +241,7 @@ endfunction "}}}
     call s:light("Operator", {"fg": "Normal"})
     call s:light("PreProc", {"fg": [270, 75, 75]})
     call s:light("Type", {"fg": "Statement"})
-    call s:light("Special", {"fg": [240, 50, 75]})
+    call s:light("Special", {"fg": "PreProc"})
     call s:light("Underlined", {"fg": [240, 75, 90], "attr": "underline"})
     call s:light("Error", {"bg": [0, 15, 90]})
     call s:light("Todo", {"bg": [60, 90, 90]})
@@ -249,7 +249,7 @@ endfunction "}}}
 " }}}
 " Light Scheme - Standard Highlighting Groups
 " {{{
-    call s:light("SpecialKey", {"fg": [240, 75, 75]})
+    call s:light("SpecialKey", {"fg": "Special"})
     call s:light("NonText", {"fg": [210, 30, 60]})
     call s:light("Directory", {"fg": "Identifier"})
     call s:light("Question", {"fg": "Statement"})
