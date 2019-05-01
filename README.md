@@ -21,10 +21,7 @@ Then, add this into your `~/.vimrc`:
 ```
 
 ## Preview
-![Example1](examples/example1.png)
-
-![Example2](examples/example2.png)
-
-![Example3](examples/example3.png)
-
-![Example4](examples/example4.png)
+![Example1](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot//example1.png)
+![Example2](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot//example2.png)
+![Example3](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot//example3.png)
+![Example4](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot//example4.png)
