@@ -232,20 +232,20 @@ endfunction "}}}
 " {{{
     call s:light("Normal", {"fg": [210, 50, 50], "bg": [75, 5, 100]})
     call s:light("Comment", {"fg": [90, 50, 50]})
-    call s:light("Constant", {"fg": [300, 75, 75]})
-    call s:light("String", {"fg": [180, 75, 60]})
+    call s:light("Constant", {"fg": [300, 80, 80]})
+    call s:light("String", {"fg": [180, 80, 60]})
     call s:light("Character", "String")
-    call s:light("Number", {"fg": [15, 90, 75]})
-    call s:light("Identifier", {"fg": [210, 75, 75]})
-    call s:light("Statement", {"fg": [120, 75, 50]})
+    call s:light("Number", {"fg": [30, 80, 70]})
+    call s:light("Identifier", {"fg": [210, 80, 80]})
+    call s:light("Statement", {"fg": [120, 80, 50]})
     call s:light("Operator", {"fg": "Normal"})
-    call s:light("PreProc", {"fg": [270, 75, 75]})
+    call s:light("PreProc", {"fg": [270, 80, 80]})
     call s:light("Type", {"fg": "Statement"})
     call s:light("Special", {"fg": "PreProc"})
-    call s:light("Underlined", {"fg": [240, 75, 90], "attr": "underline"})
-    call s:light("Error", {"bg": [0, 15, 90]})
-    call s:light("Todo", {"bg": [60, 90, 90]})
-    call s:light("MatchParen", {"bg": [150, 15, 90]})
+    call s:light("Underlined", {"fg": [240, 80, 80], "attr": "underline"})
+    call s:light("Error", {"bg": [0, 20, 100]})
+    call s:light("Todo", {"bg": [60, 100, 90]})
+    call s:light("MatchParen", {"bg": [150, 20, 90]})
 " }}}
 " Light Scheme - Standard Highlighting Groups
 " {{{
@@ -256,8 +256,8 @@ endfunction "}}}
     call s:light("Title", {"fg": "Normal"})
     call s:light("Conceal", {"fg": "PreProc"})
 
-    call s:light("ErrorMsg", {"fg": [0, 75, 90]})
-    call s:light("WarningMsg", {"fg": [30, 90, 90]})
+    call s:light("ErrorMsg", {"fg": [0, 80, 80]})
+    call s:light("WarningMsg", {"fg": [60, 80, 50]})
     call s:light("MoreMsg", {"fg": "Statement"})
     call s:light("ModeMsg", {"fg": "Normal"})
 
@@ -281,7 +281,7 @@ endfunction "}}}
 
     call s:light("WildMenu", {"bg": "IncSearch"})
 
-    call s:light("Folded", {"fg": [210, 50, 75], "bg": [150, 10, 90]})
+    call s:light("Folded", {"fg": [210, 50, 80], "bg": [150, 10, 90]})
     call s:light("FoldColumn", {"fg": "NonText"})
 
     call s:light("DiffAdd", {"bg": [120, 20, 90]})
