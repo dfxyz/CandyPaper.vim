@@ -1,12 +1,12 @@
 Candy Paper - Light & Dark Color Schemes for Vim
-================================================================================
+================================================
 
 Candy Paper provides light and dark color scheme for **Vim**.
 
 See also: 
 * [CandyPaper.idea](https://github.com/dfxyz/CandyPaper.idea) -
     color schemes for IntelliJ IDEA
-* [CandyPaper.mintty](https://github.com/dfxyz/CandyPaper.idea) -
+* [CandyPaper.mintty](https://github.com/dfxyz/CandyPaper.mintty) -
     color schemes for mintty
 
 ## Installation
