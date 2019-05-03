@@ -261,8 +261,8 @@ endfunction "}}}
     call s:light("MoreMsg", {"fg": "Statement"})
     call s:light("ModeMsg", {"fg": "Normal"})
 
-    call s:light("IncSearch", {"bg": [120, 30, 90]})
-    call s:light("Search", {"bg": [90, 30, 90]})
+    call s:light("IncSearch", {"bg": [60, 100, 90], "attr": "underline"})
+    call s:light("Search", {"bg": [120, 30, 90]})
 
     call s:light("CursorLine", {"bg": [75, 5, 95]})
     call s:light("LineNr", {"fg": "NonText"})
@@ -279,7 +279,7 @@ endfunction "}}}
     call s:light("Visual", {"bg": [120, 10, 90]})
     call s:light("VisualNOS", "Visual")
 
-    call s:light("WildMenu", {"bg": "IncSearch"})
+    call s:light("WildMenu", {"bg": "Search"})
 
     call s:light("Folded", {"fg": [210, 50, 80], "bg": [150, 10, 90]})
     call s:light("FoldColumn", {"fg": "NonText"})
@@ -292,7 +292,7 @@ endfunction "}}}
     call s:light("SignColumn", {"fg": "ErrorMsg"})
 
     call s:light("Pmenu", {"bg": "StatusLine"})
-    call s:light("PmenuSel", {"bg": "IncSearch"})
+    call s:light("PmenuSel", {"bg": "Search"})
     call s:light("PmenuSbar", {"bg": "StatusLine"})
     call s:light("PmenuThumb", {"bg": [120, 5, 80]})
 
@@ -319,71 +319,71 @@ endfunction "}}}
 
 " Dark Scheme - Standard Syntax Groups
 " {{{
-    call s:dark("Normal", {"fg": [120, 15, 60], "bg": [0, 0, 10]})
-    call s:dark("Comment", {"fg": [90, 40, 60]})
-    call s:dark("Constant", {"fg": [330, 30, 70]})
-    call s:dark("String", {"fg": [180, 60, 60]})
+    call s:dark("Normal", {"fg": [90, 20, 70], "bg": [220, 20, 20]})
+    call s:dark("Comment", {"fg": [45, 20, 70]})
+    call s:dark("Constant", {"fg": [330, 30, 80]})
+    call s:dark("String", {"fg": [180, 50, 70]})
     call s:dark("Character", "String")
-    call s:dark("Number", {"fg": [15, 50, 75]})
-    call s:dark("Identifier", {"fg": [210, 30, 65]})
-    call s:dark("Statement", {"fg": [120, 40, 60]})
+    call s:dark("Number", {"fg": [30, 50, 70]})
+    call s:dark("Identifier", {"fg": [210, 50, 80]})
+    call s:dark("Statement", {"fg": [120, 50, 70]})
     call s:dark("Operator", {"fg": "Normal"})
-    call s:dark("PreProc", {"fg": [270, 30, 70]})
+    call s:dark("PreProc", {"fg": [270, 30, 80]})
     call s:dark("Type", {"fg": "Statement"})
-    call s:dark("Special", {"fg": [240, 50, 75]})
-    call s:dark("Underlined", {"fg": [210, 50, 70], "attr": "underline"})
+    call s:dark("Special", {"fg": [270, 30, 80]})
+    call s:dark("Underlined", {"fg": [210, 50, 80], "attr": "underline"})
     call s:dark("Error", {"bg": [0, 50, 30]})
-    call s:dark("Todo", {"bg": [60, 100, 30]})
-    call s:dark("MatchParen", {"bg": [150, 30, 30]})
+    call s:dark("Todo", {"fg": [60, 50, 70]})
+    call s:dark("MatchParen", {"bg": [150, 30, 40]})
 " }}}
 " Dark Scheme - Standard Highlighting Groups
 " {{{
     call s:dark("SpecialKey", "Special")
-    call s:dark("NonText", {"fg": [120, 15, 50]})
+    call s:dark("NonText", {"fg": [90, 10, 60]})
     call s:dark("Directory", {"fg": "Identifier"})
     call s:dark("Question", {"fg": "Statement"})
     call s:dark("Title", {"fg": "Normal"})
     call s:dark("Conceal", {"fg": "PreProc"})
 
-    call s:dark("ErrorMsg", {"fg": [0, 50, 75]})
-    call s:dark("WarningMsg", {"fg": [60, 100, 60]})
+    call s:dark("ErrorMsg", {"fg": [0, 50, 80]})
+    call s:dark("WarningMsg", {"fg": [60, 50, 60]})
     call s:dark("MoreMsg", {"fg": "Statement"})
     call s:dark("ModeMsg", {"fg": "Normal"})
 
-    call s:dark("IncSearch", {"fg": [90, 60, 60], "bg": [120, 75, 30]})
-    call s:dark("Search", {"bg": [90, 75, 30]})
+    call s:dark("IncSearch", {"bg": [60, 100, 40], "attr":"underline"})
+    call s:dark("Search", {"bg": [90, 100, 40]})
 
-    call s:dark("CursorLine", {"bg": [120, 15, 20]})
+    call s:dark("CursorLine", {"bg": [210, 20, 25]})
     call s:dark("LineNr", {"fg": "NonText"})
     call s:dark("CursorLineNr", {"fg": "NonText", "bg": "CursorLine"})
     call s:dark("CursorColumn", "CursorLine")
-    call s:dark("ColorColumn", {"bg": [120, 5, 30]})
+    call s:dark("ColorColumn", {"bg": [210, 20, 40]})
 
-    call s:dark("StatusLine", {"bg": [120, 15, 30]})
-    call s:dark("StatusLineNC", {"fg": "NonText", "bg": "StatusLine"})
+    call s:dark("StatusLine", {"bg": [210, 40, 40]})
+    call s:dark("StatusLineNC", {"fg": [90, 10, 50], "bg": "StatusLine"})
     call s:dark("StatusLineTerm", "StatusLine")
     call s:dark("StatusLineTermNC", "StatusLineNC")
     call s:dark("VertSplit", {"bg": "StatusLine"})
 
-    call s:dark("Visual", {"bg": [120, 30, 30]})
+    call s:dark("Visual", {"bg": [210, 30, 30]})
     call s:dark("VisualNOS", "Visual")
 
-    call s:dark("WildMenu", {"bg": "IncSearch"})
+    call s:dark("WildMenu", {"bg": "Search"})
 
-    call s:dark("Folded", {"fg": "IncSearch", "bg": "MatchParen"})
+    call s:dark("Folded", {"fg": [90, 40, 60], "bg": [150, 30, 30]})
     call s:dark("FoldColumn", {"fg": "NonText"})
 
-    call s:dark("DiffAdd", {"bg": [120, 50, 30]})
-    call s:dark("DiffDelete", {"fg": "NonText", "bg": [120, 15, 25]})
-    call s:dark("DiffChange", {"bg": [210, 25, 30]})
-    call s:dark("DiffText", {"bg": [210, 50, 30]})
+    call s:dark("DiffAdd", {"bg": [120, 30, 30]})
+    call s:dark("DiffDelete", {"fg": "NonText", "bg": [0, 0, 30]})
+    call s:dark("DiffChange", {"bg": [210, 25, 40]})
+    call s:dark("DiffText", {"bg": [210, 50, 40]})
 
     call s:dark("SignColumn", {"fg": "ErrorMsg"})
 
     call s:dark("Pmenu", {"fg": "Normal", "bg": "StatusLine"})
-    call s:dark("PmenuSel", {"fg": "Normal", "bg": "IncSearch"})
+    call s:dark("PmenuSel", {"fg": "Normal", "bg": "Search"})
     call s:dark("PmenuSbar", {"bg": "StatusLine"})
-    call s:dark("PmenuThumb", {"bg": [120, 5, 40]})
+    call s:dark("PmenuThumb", {"bg": [210, 20, 50]})
 
     call s:dark("TabLine", {"fg": "NonText", "bg": "ColorColumn"})
     call s:dark("TabLineSel", {"fg": "Normal"})
