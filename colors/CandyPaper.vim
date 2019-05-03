@@ -370,7 +370,7 @@ endfunction "}}}
 
     call s:dark("WildMenu", {"bg": "Search"})
 
-    call s:dark("Folded", {"fg": [90, 40, 60], "bg": [150, 30, 30]})
+    call s:dark("Folded", {"fg": [90, 40, 60], "bg": [180, 30, 30]})
     call s:dark("FoldColumn", {"fg": "NonText"})
 
     call s:dark("DiffAdd", {"bg": [120, 30, 30]})
