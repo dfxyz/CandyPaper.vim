@@ -365,7 +365,7 @@ endfunction "}}}
     call s:dark("StatusLineTermNC", "StatusLineNC")
     call s:dark("VertSplit", {"bg": "StatusLine"})
 
-    call s:dark("Visual", {"bg": [210, 30, 30]})
+    call s:dark("Visual", {"bg": [210, 50, 30]})
     call s:dark("VisualNOS", "Visual")
 
     call s:dark("WildMenu", {"bg": "Search"})
