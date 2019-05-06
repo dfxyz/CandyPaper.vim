@@ -276,7 +276,7 @@ endfunction "}}}
     call s:light("StatusLineTermNC", "StatusLineNC")
     call s:light("VertSplit", {"bg": "StatusLine"})
 
-    call s:light("Visual", {"bg": [120, 10, 90]})
+    call s:light("Visual", {"bg": [90, 30, 90]})
     call s:light("VisualNOS", "Visual")
 
     call s:light("WildMenu", {"bg": "Search"})
@@ -365,7 +365,7 @@ endfunction "}}}
     call s:dark("StatusLineTermNC", "StatusLineNC")
     call s:dark("VertSplit", {"bg": "StatusLine"})
 
-    call s:dark("Visual", {"bg": [210, 50, 30]})
+    call s:dark("Visual", {"bg": [210, 50, 40]})
     call s:dark("VisualNOS", "Visual")
 
     call s:dark("WildMenu", {"bg": "Search"})
