@@ -54,7 +54,7 @@ if &background == "light"
     call s:hi("MoreMsg", {"guifg": "#108010"})
     call s:hi("ModeMsg", {"guifg": "fg"})
     call s:hi("Search", {"guifg": "fg", "guibg": "#A0FFA0"})
-    call s:hi("LineNr", {"guifg": "#609AC0"})
+    call s:hi("LineNr", {"guifg": "#6C809A"})
     call s:hi("CursorLineNr", {"guifg": "fg", "guibg": "#F0F8E0"})
     call s:hi("Question", {"guifg": "#108010"})
     call s:hi("StatusLine", {"guibg": "#D0E8E0"})
