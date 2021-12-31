@@ -90,7 +90,7 @@ if &background == "light"
 else
     " Dark Scheme {{{
     " Basic Groups {{{
-    call s:hi("Normal", {"guifg": "#A0A8AC", "guibg": "#202820"})
+    call s:hi("Normal", {"guifg": "#ACACAC", "guibg": "#202820"})
     call s:hi("Comment", {"guifg": "#708060"})
     call s:hi("Constant", {"guifg": "#C080A0"})
     call s:hi("String", {"guifg": "#38A8A8"})
