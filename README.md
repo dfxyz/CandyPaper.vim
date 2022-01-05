@@ -1,13 +1,9 @@
-Candy Paper - Light & Dark Color Schemes for Vim
+CandyPaper.vim
 ================================================
 
-Candy Paper provides light and dark color scheme for **Vim**.
+Light and dark color schemes for **Vim**.
 
-See also: 
-* [CandyPaper.idea](https://github.com/dfxyz/CandyPaper.idea) -
-    color schemes for IntelliJ IDEA
-* [CandyPaper.mintty](https://github.com/dfxyz/CandyPaper.mintty) -
-    color schemes for mintty
+See [CandyPaper](https://github.com/dfxyz/CandyPaper), color schemes for other software.
 
 ## Installation
 Just put 'CandyPaper.vim' into the 'colors' directory. Or use a bundle manager.
@@ -15,13 +11,12 @@ Just put 'CandyPaper.vim' into the 'colors' directory. Or use a bundle manager.
 Then, add this into your `~/.vimrc`:
 
 ```VimL
-    set background=light    " or dark
-    set termguicolors       " or set t_Co=256 if not supported
+    set background=light " or dark
+    set termguicolors
+    let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
     colorscheme CandyPaper
 ```
 
 ## Preview
-![Example1](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot/v1/example1.png)
-![Example2](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot/v1/example2.png)
-![Example3](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot/v1/example3.png)
-![Example4](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot/v1/example4.png)
+![Example1](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot/v2/example1.png)
