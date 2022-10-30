@@ -1,11 +1,11 @@
 CandyPaper.vim
 ================================================
-
 Light and dark color schemes for **Vim**.
 
-See [CandyPaper](https://github.com/dfxyz/CandyPaper), color schemes for other software.
+See [CandyPaper](https://github.com/dfxyz/CandyPaper), color schemes for other applications.
 
 ## Installation
+
 Just put 'CandyPaper.vim' into the 'colors' directory. Or use a bundle manager.
 
 Then, add this into your `~/.vimrc`:
@@ -19,4 +19,8 @@ Then, add this into your `~/.vimrc`:
 ```
 
 ## Preview
-![Example1](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot/v2/example1.png)
+![Example1](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot/v3/example1.png)
+
+![Example2](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot/v3/example2.png)
+
+![Example3](https://raw.githubusercontent.com/dfxyz/CandyPaper.vim/screenshot/v3/example3.png)
