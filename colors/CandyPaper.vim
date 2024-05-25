@@ -12,11 +12,11 @@ hi Normal guifg=#406080 guibg=#F2FFE6
 hi clear Comment
 hi Comment guifg=#608000
 hi clear Constant
-hi Constant guifg=#800000
+hi Constant guifg=#990000
 hi clear String
-hi String guifg=#009999
+hi String guifg=#008080
 hi clear Character
-hi Character guifg=#009999
+hi Character guifg=#008080
 hi clear Number
 hi Number guifg=#CC5500
 hi clear Boolean
@@ -70,7 +70,7 @@ hi Delimiter guifg=#406080
 hi clear SpecialComment
 hi SpecialComment guifg=#806A00
 hi clear Debug
-hi Debug guifg=#009999
+hi Debug guifg=#008080
 hi clear Underlined
 hi Underlined guifg=#0000FF gui=underline
 hi clear Error
