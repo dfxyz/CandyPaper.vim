@@ -7,8 +7,15 @@ set bg=light
 hi clear
 let g:colors_name = "CandyPaper"
 
+
+let g:terminal_ansi_colors = [
+   \ "#203040", "#E60000", "#008000", "#806A00", "#0000FF", "#CC00CC", "#008080", "#738699",
+   \ "#406080", "#FF0000", "#009900", "#CC6600", "#0080FF", "#FF00FF", "#009999", "#8FA7BF"]
+
 hi clear Normal
 hi Normal guifg=#406080 guibg=#F2FFE6
+hi clear Terminal
+hi Terminal guifg=#406080 guibg=#F2FFE6
 hi clear Comment
 hi Comment guifg=#608000
 hi clear Constant
