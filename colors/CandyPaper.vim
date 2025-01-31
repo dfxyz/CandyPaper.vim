@@ -7,164 +7,266 @@ set bg=light
 hi clear
 let g:colors_name = "CandyPaper"
 let g:terminal_ansi_colors = [
-    \ "#203040", "#E60000", "#008000", "#806A00",
-    \ "#0000FF", "#CC00CC", "#008080", "#738699",
-    \ "#406080", "#FF0000", "#009900", "#CC6600",
-    \ "#0080FF", "#FF00FF", "#009999", "#8FA7BF"]
+  \ "#406080",
+  \ "#e61717",
+  \ "#008020",
+  \ "#806000",
+  \ "#2929cc",
+  \ "#bf30bf",
+  \ "#007373",
+  \ "#608fbf",
+  \ "#406080",
+  \ "#e61717",
+  \ "#008020",
+  \ "#806000",
+  \ "#2929cc",
+  \ "#bf30bf",
+  \ "#007373",
+  \ "#608fbf",
+  \]
 
 hi clear Normal
-hi Normal guifg=#406080 guibg=#F2FFE6
+hi Normal
+  \ guifg=#406080
+  \ guibg=#f2ffe6
 hi clear Terminal
-hi Terminal guifg=#406080 guibg=#F2FFE6
+hi Terminal
+  \ guifg=#406080
+  \ guibg=#f2ffe6
 hi clear Comment
-hi Comment guifg=#608000
+hi Comment
+  \ guifg=#567300
 hi clear Constant
-hi Constant guifg=#990000
+hi Constant
+  \ guifg=#992626
 hi clear String
-hi String guifg=#008080
+hi String
+  \ guifg=#007373
 hi clear Character
-hi Character guifg=#008080
+hi Character
+  \ guifg=#007373
 hi clear Number
-hi Number guifg=#CC5500
+hi Number
+  \ guifg=#bf5430
 hi clear Boolean
-hi Boolean guifg=#008000
+hi Boolean
+  \ guifg=#008020
 hi clear Float
-hi Float guifg=#CC5500
+hi Float
+  \ guifg=#bf5430
 hi clear Identifier
-hi Identifier guifg=#406080
+hi Identifier
+  \ guifg=#406080
 hi clear Function
-hi Function guifg=#406080
+hi Function
+  \ guifg=#406080
 hi clear Statement
-hi Statement guifg=#008000
+hi Statement
+  \ guifg=#008020
 hi clear Conditional
-hi Conditional guifg=#008000
+hi Conditional
+  \ guifg=#008020
 hi clear Repeat
-hi Repeat guifg=#008000
+hi Repeat
+  \ guifg=#008020
 hi clear Label
-hi Label guifg=#008000
+hi Label
+  \ guifg=#008020
 hi clear Operator
-hi Operator guifg=#406080
+hi Operator
+  \ guifg=#406080
 hi clear Keyword
-hi Keyword guifg=#008000
+hi Keyword
+  \ guifg=#008020
 hi clear Exception
-hi Exception guifg=#008000
+hi Exception
+  \ guifg=#008020
 hi clear PreProc
-hi PreProc guifg=#806A00
+hi PreProc
+  \ guifg=#806000
 hi clear Include
-hi Include guifg=#806A00
+hi Include
+  \ guifg=#806000
 hi clear Define
-hi Define guifg=#806A00
+hi Define
+  \ guifg=#806000
 hi clear Macro
-hi Macro guifg=#806A00
+hi Macro
+  \ guifg=#806000
 hi clear PreCondit
-hi PreCondit guifg=#806A00
+hi PreCondit
+  \ guifg=#806000
 hi clear Type
-hi Type guifg=#008000
+hi Type
+  \ guifg=#008020
 hi clear StorageClass
-hi StorageClass guifg=#008000
+hi StorageClass
+  \ guifg=#008020
 hi clear Structure
-hi Structure guifg=#008000
+hi Structure
+  \ guifg=#008020
 hi clear Typedef
-hi Typedef guifg=#008000
+hi Typedef
+  \ guifg=#008020
 hi clear Special
-hi Special guifg=#0000FF
-hi clear SpecialChar
-hi SpecialChar guifg=#0000FF
+hi Special
+  \ guifg=#2929cc
 hi clear Tag
-hi Tag guifg=#0000FF
+hi Tag
+  \ guifg=#0066cc
 hi clear Delimiter
-hi Delimiter guifg=#406080
+hi Delimiter
+  \ guifg=#406080
 hi clear SpecialComment
-hi SpecialComment guifg=#806A00
-hi clear Debug
-hi Debug guifg=#008080
-hi clear Underlined
-hi Underlined guifg=#0000FF gui=underline
+hi SpecialComment
+  \ guifg=#806000
+hi clear Underline
+hi Underline
+  \ guifg=#0066cc
+  \ gui=underline
 hi clear Error
-hi Error guibg=#FFCCCC
+hi Error
+  \ guibg=#ffcccc
 hi clear Todo
-hi Todo guibg=#FFFF66
+hi Todo
+  \ guifg=#406080
+  \ guibg=#ffff66
 hi clear Added
-hi Added guifg=#008000
+hi Added
+  \ guifg=#008020
 hi clear Changed
-hi Changed guifg=#0060BF
+hi Changed
+  \ guifg=#0066cc
 hi clear Removed
-hi Removed guifg=#E60000
+hi Removed
+  \ guifg=#e61717
 hi clear ColorColumn
-hi ColorColumn guibg=#B8CCB8
+hi ColorColumn
+  \ guibg=#b8ccb8
 hi clear CursorColumn
-hi CursorColumn guibg=#EDFAC8
+hi CursorColumn
+  \ guibg=#edfac8
 hi clear CursorLine
-hi CursorLine guibg=#EDFAC8
+hi CursorLine
+  \ guibg=#edfac8
 hi clear Directory
-hi Directory guifg=#0000FF
+hi Directory
+  \ guifg=#2929cc
 hi clear DiffAdd
-hi DiffAdd guibg=#CEF2CE
+hi DiffAdd
+  \ guibg=#cef2ce
 hi clear DiffChange
-hi DiffChange guibg=#EDF4FA
+hi DiffChange
+  \ guibg=#e6f2ec
 hi clear DiffDelete
-hi DiffDelete guibg=#DFE6DF
+hi DiffDelete
+  \ guibg=#e0e6da
 hi clear DiffText
-hi DiffText guibg=#CEE0F2
+hi DiffText
+  \ guibg=#cee0f2
 hi clear ErrorMsg
-hi ErrorMsg guifg=#FFFFFF guibg=#E60000
+hi ErrorMsg
+  \ guifg=#406080
+  \ guibg=#ffcccc
 hi clear VertSplit
-hi VertSplit guifg=#8FA7BF
+hi VertSplit
+  \ guifg=#acb6bf
 hi clear Folded
-hi Folded guifg=#608FBF guibg=#DAF2DA
+hi Folded
+  \ guifg=#608fbf
+  \ guibg=#daf2da
 hi clear FoldColumn
-hi FoldColumn guifg=#608FBF
+hi FoldColumn
+  \ guifg=#acb6bf
 hi clear SignColumn
-hi SignColumn guifg=#608FBF
+hi SignColumn
+  \ guifg=#acb6bf
 hi clear LineNr
-hi LineNr guifg=#8FA7BF
+hi LineNr
+  \ guifg=#acb6bf
 hi clear CursorLineNr
-hi CursorLineNr guifg=#406080
+hi CursorLineNr
+  \ guifg=#406080
+  \ guibg=#edfac8
 hi clear CursorLineFold
-hi CursorLineFold guifg=#406080
+hi CursorLineFold
+  \ guifg=#406080
+  \ guibg=#edfac8
 hi clear CursorLineSign
-hi CursorLineSign guifg=#406080
+hi CursorLineSign
+  \ guifg=#406080
+  \ guibg=#edfac8
 hi clear MatchParen
-hi MatchParen guibg=#96FAFA
+hi MatchParen
+  \ guibg=#aaf2f2
 hi clear ModeMsg
-hi ModeMsg guifg=#0000FF
+hi ModeMsg
+  \ guifg=#2929cc
 hi clear MoreMsg
-hi MoreMsg guifg=#008000
+hi MoreMsg
+  \ guifg=#008020
 hi clear NonText
-hi NonText guifg=#8FA7BF
+hi NonText
+  \ guifg=#acb6bf
 hi clear Pmenu
-hi Pmenu guibg=#E6F2E6
+hi Pmenu
+  \ guibg=#e6f2e6
 hi clear PmenuSel
-hi PmenuSel guibg=#CEF2AA
-hi clear PmenuSbar
-hi PmenuSbar guibg=#E6F2E6
-hi clear PmenuThumb
-hi PmenuThumb guibg=#ACBFAC
+hi PmenuSel
+  \ guibg=#cef2aa
+hi clear PMenuSbar
+hi PMenuSbar
+  \ guibg=#e6f2e6
+hi clear PMenuThumb
+hi PMenuThumb
+  \ guibg=#acbfac
 hi clear Question
-hi Question guifg=#008000
+hi Question
+  \ guifg=#008020
 hi clear Search
-hi Search guifg=#203040 guibg=#B3FFB3
+hi Search
+  \ guifg=#203040
+  \ guibg=#b3ffb3
 hi clear SpecialKey
-hi SpecialKey guifg=#0000FF
+hi SpecialKey
+  \ guifg=#2929cc
 hi clear StatusLine
-hi StatusLine guifg=#406080 guibg=#C8FAC8
+hi StatusLine
+  \ guifg=#406080
+  \ guibg=#c8fac8
 hi clear StatusLineNC
-hi StatusLineNC guifg=#608FBF guibg=#CFE6CF
+hi StatusLineNC
+  \ guifg=#608fbf
+  \ guibg=#dae6da
 hi clear StatusLineTerm
-hi StatusLineTerm guifg=#406080 guibg=#C8FAC8
+hi StatusLineTerm
+  \ guifg=#406080
+  \ guibg=#c8fac8
 hi clear StatusLineTermNC
-hi StatusLineTermNC guifg=#608FBF guibg=#CFE6CF
+hi StatusLineTermNC
+  \ guifg=#608fbf
+  \ guibg=#dae6da
 hi clear TabLine
-hi TabLine guifg=#608FBF guibg=#CFE6CF
+hi TabLine
+  \ guifg=#608fbf
+  \ guibg=#dae6da
 hi clear TabLineFill
-hi TabLineFill guibg=#CFE6CF
+hi TabLineFill
+  \ guibg=#dae6da
 hi clear TabLineSel
-hi TabLineSel guifg=#406080
+hi TabLineSel
+  \ guifg=#406080
 hi clear Title
-hi Title guifg=#0000FF
+hi Title
+  \ guifg=#2929cc
 hi clear Visual
-hi Visual guibg=#CEF2AA
+hi Visual
+  \ guibg=#cef2aa
 hi clear WarningMsg
-hi WarningMsg guifg=#E60000
+hi WarningMsg
+  \ guifg=#406080
+  \ guibg=#ffe699
 hi clear WildMenu
-hi WildMenu guifg=#203040 guibg=#FFFF66
+hi WildMenu
+  \ guifg=#203040
+  \ guibg=#ffff66
