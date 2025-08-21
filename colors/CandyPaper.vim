@@ -234,6 +234,10 @@ hi clear Search
 hi Search
   \ guifg=#203040
   \ guibg=#b4ffb4
+hi clear CurSearch
+hi CurSearch
+  \ guifg=#203040
+  \ guibg=#ffb870
 hi clear SpecialKey
 hi SpecialKey
   \ guifg=#c05430
